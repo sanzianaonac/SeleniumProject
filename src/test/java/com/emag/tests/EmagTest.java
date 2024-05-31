@@ -17,15 +17,27 @@ public class EmagTest extends BaseTest {
     @Test
     public void testAddAndRemoveItemFromCart() {
         final int itemIndex = 2;
-        Assert.assertTrue(homePage.searchFor("aspiratoare"));
+
+        boolean searchSuccess = homePage.searchFor("aspiratoare");
+        Assert.assertTrue(searchSuccess, "Search for 'aspiratoare' failed");
+
         String itemName = searchResultsPage.getItemName(itemIndex);
         logger.info("Adding " + itemName + " to the cart");
-        Assert.assertTrue(searchResultsPage.addItemToCart(itemIndex)); // Attempting to add the third item
-        Assert.assertTrue(cartPage.isItemInCart(itemName), "Item was not added to cart");
+
+        boolean addItemSuccess = searchResultsPage.addItemToCart(itemIndex);
+        Assert.assertTrue(addItemSuccess, "Failed to add item to cart");
+
+        boolean isItemInCart = cartPage.isItemInCart(itemName);
+        Assert.assertTrue(isItemInCart, "Item was not added to cart");
         logger.info("Item added to cart.");
+
         cartPage.removeItemFromCart();
-        Assert.assertTrue(cartPage.isCartEmpty(), "Item was not removed from cart");
-        Assert.assertTrue(cartPage.navigateHome());
+
+        boolean isCartEmpty = cartPage.isCartEmpty();
+        Assert.assertTrue(isCartEmpty, "Item was not removed from cart");
+
+        boolean navigateHomeSuccess = cartPage.navigateHome();
+        Assert.assertTrue(navigateHomeSuccess, "Failed to navigate home");
         logger.info("Item removed from cart.");
     }
 }
