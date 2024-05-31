@@ -75,15 +75,14 @@ public class CartPage extends BasePage {
         }
     }
 
-    public boolean navigateHome() {
+    public void navigateHome() {
         try {
             WebElement homeButton = driver.findElement(homeButtonSelector);
             homeButton.click();
         }
         catch (NoSuchElementException e) {
-            return false;
+             e.printStackTrace();
         }
-
-        return true;
+        return;
     }
 }

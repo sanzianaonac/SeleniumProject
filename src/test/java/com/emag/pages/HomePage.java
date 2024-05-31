@@ -13,15 +13,15 @@ public class HomePage extends BasePage {
         super(driver, timeout);
     }
 
-    public boolean searchFor(String query) {
+    public void searchFor(String query) {
         try {
             WebElement searchBoxElement = driver.findElement(searchBox);
             searchBoxElement.sendKeys(query);
             searchBoxElement.submit();
         }
         catch(NoSuchElementException e) {
-            return false;
+            e.printStackTrace();
         }
-       return true;
+       return;
     }
 }

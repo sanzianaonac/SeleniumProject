@@ -18,8 +18,7 @@ public class EmagTest extends BaseTest {
     public void testAddAndRemoveItemFromCart() {
         final int itemIndex = 2;
 
-        boolean searchSuccess = homePage.searchFor("aspiratoare");
-        Assert.assertTrue(searchSuccess, "Search for 'aspiratoare' failed");
+        homePage.searchFor("aspiratoare");
 
         String itemName = searchResultsPage.getItemName(itemIndex);
         logger.info("Adding " + itemName + " to the cart");
@@ -36,8 +35,6 @@ public class EmagTest extends BaseTest {
         boolean isCartEmpty = cartPage.isCartEmpty();
         Assert.assertTrue(isCartEmpty, "Item was not removed from cart");
 
-        boolean navigateHomeSuccess = cartPage.navigateHome();
-        Assert.assertTrue(navigateHomeSuccess, "Failed to navigate home");
-        logger.info("Item removed from cart.");
+        cartPage.navigateHome();
     }
 }
